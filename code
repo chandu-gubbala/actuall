@@ -1,1 +1,47 @@
-//write code here
+#write code here
+import random
+def roll():
+    val=random.randint(1,6)
+    return val
+
+while True:
+    players=input('enter the number of players (2-4): ')
+    if players.isdigit():
+        players=int(players)
+        if 2<=players<=4:
+            break
+        else:print("must be between 2 - 4 players")
+    else:print("invalid,try again...!")
+print("the number of playes are : ",players)
+
+max_score=30
+players_score=[0 for _ in range(players)]
+
+while max(players_score)<max_score:
+    for player_idx in range(players):
+        print("\nPlayer ",player_idx+1," turn is started :::::::::::::::::::::::::::::::::::::::")
+        print("Player ",player_idx+1,"present scroe :",players_score[player_idx],"\n")
+        current_scrore=0
+        
+        while True:
+            keyy=input("\nU wanna roll press(y): ")
+            if keyy.lower()!='y':
+                break
+            value=roll()
+            if value==1:
+                print("\nU rolled 1 Ur turn is done    :(")
+                current_scrore=0
+                players_score[player_idx]=0
+                break
+            else:
+                current_scrore+=value
+                print("U rolled: ",value)
+                
+            print("Ur score: ",current_scrore)
+            
+        players_score[player_idx]+=current_scrore
+        print('Ur total score: ',players_score[player_idx])
+        
+max_scor=max(players_score)
+winner=players_score.index(max_scor)
+print("\nplayer ",winner+1,"is the winner. : .....##@@###$$$$%%$&&%$##$%%^$#@@#$$%%")
